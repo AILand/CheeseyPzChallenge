@@ -1,4 +1,4 @@
 {
-    "apiUrl": "http://localhost:46668/api",
+    "apiUrl": "http://localhost:5006/api",
     "uiUrl": "http://localhost:3000"
 }
