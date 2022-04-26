@@ -1,0 +1,79 @@
+
+.title {
+  font-size: larger;
+}
+
+.cheeseImage {
+  height:60px;
+  width:60px;
+}
+
+input[type='file'] {
+  color: rgba(0, 0, 0, 0)
+}
+
+.fieldError{
+  display: block;
+  color: red;
+  font-size: x-small;
+}
+
+.actionsColumn {
+  width: 110px !important;   
+  text-align: center;
+}
+
+.actionButton {
+  display: block;
+  width: 90px;   
+  padding-left:10px;
+  padding-right:10px;
+  margin:5px;
+}
+
+.addCheeseButton {
+  width: 120px;   
+  margin:5px;
+}
+
+.editForm {
+  width:400px;
+  padding-left:20px
+}
+
+.editField {
+  padding-top:10px;
+  display: block;
+}
+
+.editField label {
+  padding-left:26px;
+  width:200px;
+  display:block;
+}
+
+table {
+  border-spacing: 0;
+  border: 1px solid black;
+  width: 600px;
+  border-radius: 5px;
+
+  
+
+  th,
+  td {
+    margin: 0;
+    padding: 0.5rem;
+    
+    border-bottom: 1px solid grey;
+    // border-right: 1px solid black;
+
+    // :last-child {
+    //   border-bottom: 10;
+    // }
+  }
+  
+  tr:last-child td {
+        border-bottom: 0;
+  }    
+}

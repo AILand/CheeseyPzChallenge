@@ -1,0 +1,22 @@
+{
+  "printWidth": 140,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "semi": true,
+  "tabWidth": 2,
+  "useTabs": false,
+  "bracketSpacing": true,
+  "arrowParens": "avoid",
+  "endOfLine": "auto",
+  "importOrder": ["^react(.*)$", "^[@a-z](.*)$", "^~(.*)$", "^[\\.][\\.]", "^[\\.\/]"],
+  "importOrderSeparation": true,
+  "overrides": [
+    {
+      "files": "package.json",
+      "options": {
+        "useTabs": false,
+        "tabWidth": 2
+      }
+    }
+  ]
+}
