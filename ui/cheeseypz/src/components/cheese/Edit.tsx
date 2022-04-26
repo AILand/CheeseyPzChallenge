@@ -23,7 +23,6 @@ const Edit: React.FC<IProps> = props => {
   const navigate = useNavigate();
   const [cheese, setCheese] = useState<CheeseModel>();
   const [imgData, setImgData] = useState<any>(null);
-  // const CurrencyFormat = require('react-currency-format');
 
   const onSubmit = (data: any) => {
     let fd = new FormData();
@@ -123,7 +122,7 @@ const Edit: React.FC<IProps> = props => {
           </div>
           <div className={styles.editField}>
             <label>
-              Price per Kg (Dollars):
+              Price per Kg:
               <input
                 type="number"
                 step={0.01}
