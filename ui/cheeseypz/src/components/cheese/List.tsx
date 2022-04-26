@@ -7,6 +7,7 @@ import paths from '../../routing/paths';
 import cheesesApiService from '../../services/cheese-api.service';
 import { formHelper } from '../../util/form-helper';
 
+import Calculator from './Calculator';
 import styles from './styles.module.scss';
 
 interface IProps {
@@ -51,39 +52,49 @@ const List: React.FC<IProps> = props => {
       <button onClick={addOnClick()} className={styles.addCheeseButton}>
         Add Cheese
       </button>
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Color</th>
-            <th>Price per Kg</th>
-            <th>Image</th>
-            <th className={styles.actionsColumn}>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cheeses.map((cheese, index) => (
-            <tr key={cheese.id}>
-              <td>{index + 1}</td>
-              <td>{cheese.name}</td>
-              <td>{cheese.color}</td>
-              <td>{formHelper.formatNumberToDollars(cheese.pricePerKg, '$', '$0')}</td>
-              <td>
-                {!!cheese.image && <img alt="cheese pic" src={`data:image/jpeg;base64,${cheese.image}`} className={styles.cheeseImage} />}
-              </td>
-              <td className={styles.actionsColumn}>
-                <button onClick={editOnClick(cheese.id)} className={styles.actionButton}>
-                  Edit
-                </button>
-                <button onClick={deleteOnClick(cheese.id)} className={styles.actionButton}>
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div style={{ display: 'block' }}>
+        <div style={{ display: 'block', width: 650 }}>
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Color</th>
+                <th>Price per Kg</th>
+                <th>Image</th>
+                <th className={styles.actionsColumn}>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cheeses.map((cheese, index) => (
+                <tr key={cheese.id}>
+                  <td>{index + 1}</td>
+                  <td>{cheese.name}</td>
+                  <td>{cheese.color}</td>
+                  <td>{formHelper.formatNumberToDollars(cheese.pricePerKg, '$', '$0')}</td>
+                  <td>
+                    {!!cheese.image && (
+                      <img alt="cheese pic" src={`data:image/jpeg;base64,${cheese.image}`} className={styles.cheeseImage} />
+                    )}
+                  </td>
+                  <td className={styles.actionsColumn}>
+                    <button onClick={editOnClick(cheese.id)} className={styles.actionButton}>
+                      Edit
+                    </button>
+                    <button onClick={deleteOnClick(cheese.id)} className={styles.actionButton}>
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div style={{ display: 'block', width: 300, paddingTop: 20 }}>
+          <Calculator cheeses={cheeses}></Calculator>
+        </div>
+      </div>
     </>
   );
 };

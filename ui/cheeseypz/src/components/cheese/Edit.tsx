@@ -18,7 +18,7 @@ const Edit: React.FC<IProps> = props => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, dirtyFields },
+    formState: { errors },
   } = useForm();
   const navigate = useNavigate();
   const [cheese, setCheese] = useState<CheeseModel>();
@@ -75,7 +75,7 @@ const Edit: React.FC<IProps> = props => {
     if (!!props.id && props.id !== '') {
       cheesesApiService.getCheese(props.id).then((data: any) => setCheese(data));
     }
-  }, []);
+  }, [props.id]);
 
   useEffect(() => {
     reset(cheese);
