@@ -29,4 +29,4 @@ ENTRYPOINT ["dotnet", "CheeseyPz.WebApi.dll"]
 
 
 #docker build -f infrastructure\CheeseyPz.WebApi\Dockerfile -t cheese .
-#docker run -p 5006:5000 cheese
+#docker run -dp 5006:5000 cheese

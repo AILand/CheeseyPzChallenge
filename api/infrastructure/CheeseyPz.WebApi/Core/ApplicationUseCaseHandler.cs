@@ -28,7 +28,6 @@ namespace CheeseyPz.WebApi.Core
 			}
 
 			var requestType = request.GetType();
-
 			var handler = (dynamic)Activator.CreateInstance(typeof(RequestWrapper<,>).MakeGenericType(requestType, typeof(TResponse)));
 
 			return handler.HandleAsync(serviceFactory, request, cancellationToken);

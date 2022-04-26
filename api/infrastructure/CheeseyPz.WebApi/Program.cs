@@ -8,6 +8,11 @@ namespace CheeseyPz.WebApi
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            //TODO: Sensitive config settings in user secrets json
+            //TODO: Install Serilog and create logs somewhere useful.
+            //TODO: Enrich with application meta data
+            //TODO: Configure logger for different environments and set logging levels.
+
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

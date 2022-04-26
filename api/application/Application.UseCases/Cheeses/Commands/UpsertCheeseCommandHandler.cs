@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases.Cheeses.Commands
 {
+    //TODO: Add more validation and error logging
     public class UpsertCheeseCommandHandler : IUseCaseHandler<UpsertCheeseCommand, Guid>
     {
         private readonly ILogger<UpsertCheeseCommandHandler> logger;

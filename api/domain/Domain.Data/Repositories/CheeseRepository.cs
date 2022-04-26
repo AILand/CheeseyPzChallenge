@@ -8,6 +8,7 @@ using System.Linq;
 
 namespace Domain.Data.Repositories
 {
+    //I used a memory cache for persistence. I thought about using an in memory EF SQL database or Redis cache. 
     public class CheeseRepository : ICheeseRepository
     {
         private const string CheeseKey = "cheeseKey";
@@ -24,66 +25,99 @@ namespace Domain.Data.Repositories
 
         public Cheese GetCheeseByID(Guid cheeseId)
         {
-            var allCheeses = GetCheeseList();
-            var cheese = allCheeses.FirstOrDefault(i => i.Id == cheeseId);
-            return cheese;
+            try
+            {
+                var allCheeses = GetCheeseList();
+                var cheese = allCheeses.FirstOrDefault(i => i.Id == cheeseId);
+                return cheese;
+            }
+            catch (Exception ex)
+            {
+                logger.Log(LogLevel.Error, ex, "Error when retrieving cheese by ID");
+                throw;
+            }
         }
 
         public IEnumerable<Cheese> GetCheeses()
         {
-            if (this.memoryCache.TryGetValue(CheeseKey, out IEnumerable<Cheese> cheeseCollection))
+            try
             {
+                if (this.memoryCache.TryGetValue(CheeseKey, out IEnumerable<Cheese> cheeseCollection))
+                {
+                    return cheeseCollection;
+                }
+
                 return cheeseCollection;
             }
-
-            return cheeseCollection;
+            catch (Exception ex)
+            {
+                logger.Log(LogLevel.Error, ex, "Error when retrieving list of cheeses");
+                throw;
+            }
         }
 
         public Guid Insert(Cheese cheese)
         {
-            var allCheeses = GetCheeseList();
-            cheese.Id = Guid.NewGuid();
-            allCheeses.Add(cheese);
+            try
+            {
+                var allCheeses = GetCheeseList();
+                cheese.Id = Guid.NewGuid();
+                allCheeses.Add(cheese);
 
-            this.memoryCache.Set(CheeseKey, allCheeses, CacheOptions);
-            return cheese.Id;
+                this.memoryCache.Set(CheeseKey, allCheeses, CacheOptions);
+                return cheese.Id;
+            }
+            catch (Exception ex)
+            {
+                logger.Log(LogLevel.Error, ex, "Error when attempting to insert cheese");
+                throw;
+            }
         }
 
         public void Update(Cheese cheese)
         {
-            var allCheeses = GetCheeseList();
-            var cheeseToUpdate = allCheeses.FirstOrDefault(i => i.Id == cheese.Id);
-
-            cheeseToUpdate.Name = cheese.Name;
-            cheeseToUpdate.Color = cheese.Color;
-            cheeseToUpdate.Image = cheeseToUpdate.Image;
-            if ((cheeseToUpdate?.Image?.Length??0) > 0)
+            try
             {
-                cheeseToUpdate.Image = cheese.Image;
-            }
+                var allCheeses = GetCheeseList();
+                var cheeseToUpdate = allCheeses.FirstOrDefault(i => i.Id == cheese.Id);
 
-            this.memoryCache.Set(CheeseKey, allCheeses, CacheOptions);
+                cheeseToUpdate.Name = cheese.Name;
+                cheeseToUpdate.Color = cheese.Color;
+                cheeseToUpdate.Image = cheeseToUpdate.Image;
+                if ((cheeseToUpdate?.Image?.Length??0) > 0)
+                {
+                    cheeseToUpdate.Image = cheese.Image;
+                }
+
+                this.memoryCache.Set(CheeseKey, allCheeses, CacheOptions);
+            }
+            catch (Exception ex)
+            {
+                logger.Log(LogLevel.Error, ex, "Error when attempting to update cheese");
+                throw;
+            }
         }
 
         public void Delete(Guid cheeseId)
         {
-            var allCheeses = GetCheeseList();
-            var cheeseToUpdate = allCheeses.FirstOrDefault(i => i.Id == cheeseId);
-            allCheeses.Remove(cheeseToUpdate);
-            this.memoryCache.Set(CheeseKey, allCheeses, CacheOptions);
+            try
+            {
+                var allCheeses = GetCheeseList();
+                var cheeseToUpdate = allCheeses.FirstOrDefault(i => i.Id == cheeseId);
+                allCheeses.Remove(cheeseToUpdate);
+                this.memoryCache.Set(CheeseKey, allCheeses, CacheOptions);
+            }
+            catch (Exception ex)
+            {
+                logger.Log(LogLevel.Error, ex, "Error when attempting to update cheese");
+                throw;
+            }
         }
 
         private List<Cheese> GetCheeseList()
         {
-            //var allCheeses = new List<Cheese>();
             var cheeses = GetCheeses();
-            //if (cheeses != null)
-            //    cheeses.ForEach(i => allCheeses.Add(i));
-
             return cheeses?.ToList() ?? new List<Cheese>();
-            //== null ? new List<Cheese>():  cheeses?.ToList();
-
-            //return allCheeses;
         }
     }
 }
