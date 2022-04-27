@@ -25,7 +25,6 @@ From the root of the repo run: **docker compose up**
 ### `Helpful stuff:`
 
     **Backend rebuild**
-
     Run from the /api folder
     docker build -f infrastructure\CheeseyPz.WebApi\Dockerfile -t cheese .
     docker run -dp 5006:5000 cheese
@@ -39,11 +38,11 @@ From the root of the repo run: **docker compose up**
 
 ### `Improvments:`
 
-Better error handling/logging.
-Tests run step in docker file.
-More comprehensive backend tests.
-Injectable configuration from docker files.
-Front end tests
-CSS framework
-More consistent use of CSS.
-Rename everything "Cheesey" to "Cheesy".
+    -Better error handling/logging.
+    -Tests run step in docker file.
+    -More comprehensive backend tests.
+    -Injectable configuration from docker files.
+    -Front end tests
+    -CSS framework
+    -More consistent use of CSS.
+    -Rename everything "Cheesey" to "Cheesy".
