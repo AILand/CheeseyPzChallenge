@@ -25,14 +25,16 @@ From the root of the repo run: **docker compose up**
 ### `Helpful stuff:`
 
 **Backend rebuild**
-Run from the /api folder
-docker build -f infrastructure\CheeseyPz.WebApi\Dockerfile -t cheese .
-docker run -dp 5006:5000 cheese
+
+    Run from the /api folder
+    docker build -f infrastructure\CheeseyPz.WebApi\Dockerfile -t cheese .
+    docker run -dp 5006:5000 cheese
 
 **Frontend rebuild**
-Run from the root of react app (/ui/cheeseypz/)
-docker build -f Dockerfile -t cheeseui .
-docker run -dp 3000:3000 cheeseui
+
+    Run from the root of react app (/ui/cheeseypz/)
+    docker build -f Dockerfile -t cheeseui .
+    docker run -dp 3000:3000 cheeseui
 
 **Test images can be found in /testdata folder**
 
