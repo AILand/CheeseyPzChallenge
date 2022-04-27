@@ -14,8 +14,7 @@ Docker
 
 ### `To run:`
 
-From the root of the repo run:
-?docker compose up
+From the root of the repo run: **docker compose up**
 
     Backend:
     [http://localhost:5006/swagger/index.html](http://localhost:5006/swagger/index.html)
