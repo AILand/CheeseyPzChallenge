@@ -9,7 +9,8 @@ C# .Net Core 5 webapi
 
 **Frontend:**
 React v18
-Infrastructure
+
+**Infrastructure**
 Docker
 
 ### `To run:`
